@@ -63,8 +63,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, John Doe!' => 'John Doe'
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  return value.split(' ')[1].concat(' ', value.split(' ')[2].slice(0, -1));
 }
 
 /**
@@ -123,8 +123,8 @@ function repeatString(value, count) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  return str.replace(value, '');
 }
 
 /**
@@ -198,8 +198,23 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const hor = '─'.repeat(width - 2);
+  const space = ' '.repeat(width - 2);
+  const ver = ''.concat('│', space, '│', '\n');
+  const enter = '\n';
+
+  return ''.concat(
+    '┌',
+    hor,
+    '┐',
+    enter,
+    ver.repeat(height - 2),
+    '└',
+    hor,
+    '┘',
+    enter,
+  );
 }
 
 /**
