@@ -178,8 +178,9 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const pw = 10 ** pow;
+  return Math.round(num / pw) * pw;
 }
 
 /**
@@ -200,11 +201,12 @@ function roundToPowerOfTen(/* num, pow */) {
  *   17 => true
  */
 function isPrime(n) {
-  for (let index = 2; index <= n; index += 1) {
-    if (n % index === 0 && n !== index) {
+  for (let i = 2; i < n; i += 1) {
+    if (n % i === 0) {
       return false;
     }
   }
+
   return true;
 }
 
