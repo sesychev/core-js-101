@@ -105,6 +105,7 @@ async function chainPromises(array, action) {
     array.forEach((item) => {
       item.then((value) => arr.push(value))
         .catch((error) => {
+          // eslint-disable-next-line no-console
           console.error(error);
         });
     });
