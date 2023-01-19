@@ -445,8 +445,10 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  return new Array(n).fill(Array(n).fill(0))
+    // eslint-disable-next-line no-return-assign, no-param-reassign
+    .map((row, i) => row.map((item, j) => (i === j ? item = 1 : item = 0)));
 }
 
 /**
