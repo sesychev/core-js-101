@@ -580,10 +580,8 @@ function swapHeadAndTail(arr) {
     const head = arr.slice(0, middle);
     return [...tail, ...head];
   }
-  // eslint-disable-next-line no-bitwise
-  const tail = arr.slice(~~middle + 1);
-  // eslint-disable-next-line no-bitwise
-  const head = arr.slice(0, ~~middle);
+  const tail = arr.slice(Math.trunc(middle) + 1);
+  const head = arr.slice(0, Math.trunc(middle));
   // eslint-disable-next-line no-bitwise
   return [...tail, arr[~~middle], ...head];
 }
