@@ -344,102 +344,129 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const stack = [];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const item of str) {
+    const bracket = item;
+    if (bracket === '(' || bracket === '[' || bracket === '{' || bracket === '<') stack.push(bracket);
+    let checker;
+    switch (bracket) {
+      case ')':
+        checker = stack.pop();
+        if (checker !== '(') return false;
+        break;
+      case '}':
+        checker = stack.pop();
+        if (checker !== '{') return false;
+        break;
+      case ']':
+        checker = stack.pop();
+        if (checker !== '[') return false;
+        break;
+      case '>':
+        checker = stack.pop();
+        if (checker !== '<') return false;
+        break;
+      default:
+    }
+  }
+
+  return (stack.length === 0);
 }
 
 /**
- * Returns the string with n-ary (binary, ternary, etc, where n <= 10)
- * representation of specified number.
- * See more about
- * https://en.wikipedia.org/wiki/Binary_number
- * https://en.wikipedia.org/wiki/Ternary_numeral_system
- * https://en.wikipedia.org/wiki/Radix
- *
- * @param {number} num
- * @param {number} n, radix of the result
- * @return {string}
- *
- * @example:
- *   1024, 2  => '10000000000'
- *   6561, 3  => '100000000'
- *    365, 2  => '101101101'
- *    365, 3  => '111112'
- *    365, 4  => '11231'
- *    365, 10 => '365'
- */
+   * Returns the string with n-ary (binary, ternary, etc, where n <= 10)
+   * representation of specified number.
+   * See more about
+   * https://en.wikipedia.org/wiki/Binary_number
+   * https://en.wikipedia.org/wiki/Ternary_numeral_system
+   * https://en.wikipedia.org/wiki/Radix
+   *
+   * @param {number} num
+   * @param {number} n, radix of the result
+   * @return {string}
+   *
+   * @example:
+   *   1024, 2  => '10000000000'
+   *   6561, 3  => '100000000'
+   *    365, 2  => '101101101'
+   *    365, 3  => '111112'
+   *    365, 4  => '11231'
+   *    365, 10 => '365'
+   */
 function toNaryString(num, n) {
   return num.toString(n);
 }
 
 /**
- * Returns the common directory path for specified array of full filenames.
- *
- * @param {array} pathes
- * @return {string}
- *
- * @example:
- *   ['/web/images/image1.png', '/web/images/image2.png']  => '/web/images/'
- *   ['/web/assets/style.css', '/web/scripts/app.js',  'home/setting.conf'] => ''
- *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
- *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
- */
+   * Returns the common directory path for specified array of full filenames.
+   *
+   * @param {array} pathes
+   * @return {string}
+   *
+   * @example:
+   *   ['/web/images/image1.png', '/web/images/image2.png']  => '/web/images/'
+   *   ['/web/assets/style.css', '/web/scripts/app.js',  'home/setting.conf'] => ''
+   *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
+   *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
+   */
 function getCommonDirectoryPath(/* pathes */) {
   throw new Error('Not implemented');
 }
 
 /**
- * Returns the product of two specified matrixes.
- * See details: https://en.wikipedia.org/wiki/Matrix_multiplication
- *
- * @param {array} m1
- * @param {array} m2
- * @return {array}
- *
- * @example:
- *   [[ 1, 0, 0 ],       [[ 1, 2, 3 ],           [[ 1, 2, 3 ],
- *    [ 0, 1, 0 ],   X    [ 4, 5, 6 ],     =>     [ 4, 5, 6 ],
- *    [ 0, 0, 1 ]]        [ 7, 8, 9 ]]            [ 7, 8, 9 ]]
- *
- *                        [[ 4 ],
- *   [[ 1, 2, 3]]    X     [ 5 ],          =>     [[ 32 ]]
- *                         [ 6 ]]
- *
- */
+   * Returns the product of two specified matrixes.
+   * See details: https://en.wikipedia.org/wiki/Matrix_multiplication
+   *
+   * @param {array} m1
+   * @param {array} m2
+   * @return {array}
+   *
+   * @example:
+   *   [[ 1, 0, 0 ],       [[ 1, 2, 3 ],           [[ 1, 2, 3 ],
+   *    [ 0, 1, 0 ],   X    [ 4, 5, 6 ],     =>     [ 4, 5, 6 ],
+   *    [ 0, 0, 1 ]]        [ 7, 8, 9 ]]            [ 7, 8, 9 ]]
+   *
+   *                        [[ 4 ],
+   *   [[ 1, 2, 3]]    X     [ 5 ],          =>     [[ 32 ]]
+   *                         [ 6 ]]
+   *
+   */
 function getMatrixProduct(/* m1, m2 */) {
   throw new Error('Not implemented');
 }
 
 /**
- * Returns the evaluation of the specified tic-tac-toe position.
- * See the details: https://en.wikipedia.org/wiki/Tic-tac-toe
- *
- * Position is provides as 3x3 array with the following values: 'X','0', undefined
- * Function should return who is winner in the current position according to the game rules.
- * The result can be: 'X','0',undefined
- *
- * @param {array} position
- * @return {string}
- *
- * @example
- *
- *   [[ 'X',   ,'0' ],
- *    [    ,'X','0' ],       =>  'X'
- *    [    ,   ,'X' ]]
- *
- *   [[ '0','0','0' ],
- *    [    ,'X',    ],       =>  '0'
- *    [ 'X',   ,'X' ]]
- *
- *   [[ '0','X','0' ],
- *    [    ,'X',    ],       =>  undefined
- *    [ 'X','0','X' ]]
- *
- *   [[    ,   ,    ],
- *    [    ,   ,    ],       =>  undefined
- *    [    ,   ,    ]]
- *
- */
+   * Returns the evaluation of the specified tic-tac-toe position.
+   * See the details: https://en.wikipedia.org/wiki/Tic-tac-toe
+   *
+   * Position is provides as 3x3 array with the following values: 'X','0', undefined
+   * Function should return who is winner in the current position according to the game rules.
+   * The result can be: 'X','0',undefined
+   *
+   * @param {array} position
+   * @return {string}
+   *
+   * @example
+   *
+   *   [[ 'X',   ,'0' ],
+   *    [    ,'X','0' ],       =>  'X'
+   *    [    ,   ,'X' ]]
+   *
+   *   [[ '0','0','0' ],
+   *    [    ,'X',    ],       =>  '0'
+   *    [ 'X',   ,'X' ]]
+   *
+   *   [[ '0','X','0' ],
+   *    [    ,'X',    ],       =>  undefined
+   *    [ 'X','0','X' ]]
+   *
+   *   [[    ,   ,    ],
+   *    [    ,   ,    ],       =>  undefined
+   *    [    ,   ,    ]]
+   *
+   */
 function evaluateTicTacToePosition(/* position */) {
   throw new Error('Not implemented');
 }
